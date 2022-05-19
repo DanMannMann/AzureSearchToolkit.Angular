@@ -1,0 +1,12 @@
+:host {
+    cursor: pointer;
+}
+
+.search-toolkit-facet-value-label-span {
+    white-space: nowrap;
+}
+
+.search-toolkit-facet-value-label-container {
+    text-align: left;
+    font-size: 12px;
+}

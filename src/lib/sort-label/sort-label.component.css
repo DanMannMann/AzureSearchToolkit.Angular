@@ -1,0 +1,12 @@
+.search-toolkit-sort-label-icon {
+    font-size: 90%;
+    height: unset;
+}
+
+.search-toolkit-sort-label-span {
+    cursor: pointer;
+}
+
+.search-toolkit-sort-label-icon-none {
+    opacity: 0.4;
+}

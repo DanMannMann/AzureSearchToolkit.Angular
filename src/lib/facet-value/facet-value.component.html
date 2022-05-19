@@ -1,0 +1,11 @@
+<div class="mat-form-field search-toolkit-facet-value-label-container" (click)="facetValue.selected = !facetValue.selected; facetValueChange.emit(facetValue)">
+    <span class="search-toolkit-facet-value-label-span">
+        <input class="search-toolkit-facet-value-checkbox" type="checkbox" [(ngModel)]="facetValue.selected" (ngModelChange)="facetValueChange.emit(facetValue)">
+        <span>{{ getDisplayString(facetValue.value || 0) }}</span>
+        <span *ngIf="hasSecondValue && facetValue.valueTo"> - {{ getDisplayString(facetValue.valueTo || 0) }}</span>
+        <span *ngIf="hasSecondValue && !facetValue.valueTo">+</span>
+        <span *ngIf="facetValue.filteredCount != facetValue.count"> ({{ facetValue.filteredCount }}/</span>
+        <span *ngIf="facetValue.filteredCount == facetValue.count"> (</span>
+        <span>{{ facetValue.count }})</span>
+    </span>
+</div>

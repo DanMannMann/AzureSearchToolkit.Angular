@@ -1,0 +1,36 @@
+<search-toolkit-search-host 
+    *ngIf="!!searchModel" 
+    [searchModel]="searchModel" 
+    (searchModelChange)="searchModelChange.emit()"
+    [hideFilters]="hideFilters"
+    [hideFacets]="hideFacets"
+    [hideSelectFields]="hideSelectFields"
+    [showFilters]="showFilters"
+    [showFacets]="showFacets"
+    [showSelectFields]="showSelectFields"
+    [pageSizes]="pageSizes">
+    <table resultArea class="mat-form-field">
+        <thead>
+        <tr>
+            <th *ngFor="let field of columns(selectedFields)">
+            <search-toolkit-sort-label 
+                class="dynamic-search-sort-label"
+                *ngIf="hasOrderingField(field.fieldName)" 
+                [data]="orderingField(field.fieldName)" 
+                (dataChange)="searchModelChange.emit()">
+            </search-toolkit-sort-label>
+            <div class="dynamic-search-label">
+                <span *ngIf="!hasOrderingField(field.fieldName)">{{ getDisplayName(field) }}</span>
+            </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let result of currentPageResults">
+            <td *ngFor="let field of columns(selectedFields)">
+            {{ getDisplayString(field, getPropertyCaseInsensitive(field.fieldName, result)) }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</search-toolkit-search-host>

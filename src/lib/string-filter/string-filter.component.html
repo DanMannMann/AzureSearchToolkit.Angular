@@ -1,0 +1,23 @@
+<div class="search-toolkit-string-filter-value-container">
+    <mat-form-field>
+        <mat-label>
+            <span class="search-toolkit-string-filter-name">{{ displayName }}</span>
+        </mat-label>
+        <input matInput type="text" class="search-toolkit-string-filter-value" [(ngModel)]="data.value" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>
+<div class="search-toolkit-string-filter-comparison-container">
+    <mat-form-field>
+        <mat-select *ngIf="data.isCollection" class="search-toolkit-string-filter-comparison-select" [(value)]="data.operation" (valueChange)="dataChange.emit(data)">
+            <mat-option class="search-toolkit-string-filter-comparison-option" [value]="'Equal'">Contains</mat-option>
+        </mat-select>
+        <mat-select *ngIf="!data.isCollection" class="search-toolkit-string-filter-comparison-select" [(value)]="data.operation" (valueChange)="dataChange.emit(data)">
+            <mat-option class="search-toolkit-string-filter-comparison-option" *ngFor="let x of orderedOperations" [value]="x">{{ x }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="search-toolkit-string-filter-valueTo-container" *ngIf="data.operation == 'Between'">
+    <mat-form-field>
+        <input matInput type="text" class="search-toolkit-string-filter-valueTo" [(ngModel)]="data.valueTo" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>

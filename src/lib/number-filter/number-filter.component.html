@@ -1,0 +1,20 @@
+<div class="search-toolkit-number-filter-value-container">
+    <mat-form-field>
+        <mat-label>
+            <span class="search-toolkit-number-filter-name">{{ displayName }}</span>
+        </mat-label>
+        <input matInput type="number" class="search-toolkit-number-filter-value" [(ngModel)]="data.value" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>
+<div class="search-toolkit-number-filter-comparison-container">
+    <mat-form-field>
+        <mat-select class="search-toolkit-number-filter-comparison-select" [(value)]="data.operation" (valueChange)="dataChange.emit(data)">
+            <mat-option class="search-toolkit-number-filter-comparison-option" *ngFor="let x of orderedOperations" [value]="x">{{ x }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="search-toolkit-number-filter-valueTo-container" *ngIf="data.operation == 'Between'">
+    <mat-form-field>
+        <input matInput type="number" class="search-toolkit-number-filter-valueTo" [(ngModel)]="data.valueTo" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>

@@ -1,0 +1,20 @@
+<div class="search-toolkit-datetime-filter-value-container">
+    <mat-form-field>
+        <mat-label>
+            <span class="search-toolkit-datetime-filter-name">{{ displayName }}</span>
+        </mat-label>
+        <input matInput type="datetime-local" class="search-toolkit-datetime-filter-value" [ngModel]="data.value | slice:0:16" (ngModelChange)="data.value = $event" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>
+<div class="search-toolkit-datetime-filter-comparison-container">
+    <mat-form-field>
+        <mat-select class="search-toolkit-datetime-filter-comparison-select" [(value)]="data.operation" (valueChange)="dataChange.emit(data)">
+            <mat-option class="search-toolkit-datetime-filter-comparison-option" *ngFor="let x of orderedOperations" [value]="x">{{ x }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="search-toolkit-datetime-filter-valueTo-container" *ngIf="data.operation == 'Between'">
+    <mat-form-field>
+        <input matInput type="datetime-local" class="search-toolkit-datetime-filter-valueTo" [ngModel]="data.valueTo | slice:0:16" (ngModelChange)="data.valueTo = $event" (change)="dataChange.emit(data)">
+    </mat-form-field>
+</div>

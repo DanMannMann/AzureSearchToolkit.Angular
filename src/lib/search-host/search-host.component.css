@@ -1,0 +1,95 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+}
+.wrap-row {
+    flex-wrap: wrap;
+}
+.search-toolkit-search-button {
+    height: min-content;
+}
+.search-controls-row {
+    align-items: center;
+    justify-content: space-between;
+}
+.search-input-row {
+    align-items: center;
+}
+.pagination-row {
+    align-items: center;
+    font-size: 12px;
+}
+
+search-toolkit-field-selector {
+    margin-top: 6px;
+}
+
+.search-toolkit-filter-drawer {
+    font-size: 12px;
+    justify-content: center;
+}
+
+.search-toolkit-filter-expansion {
+    padding: 5px;
+    min-height: 32px;
+    margin-bottom: 10px;
+}
+
+.search-input-row {
+    flex-grow: 1;
+    max-width: 50%;
+}
+
+.chip-close {
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+::ng-deep .mat-expansion-panel-header.mat-expanded {
+    height: 36px;
+}
+
+::ng-deep .mat-expansion-panel-header {
+    height: 32px;
+}
+
+.hide-empty-container {
+    font-size: 12px;
+    align-items: center;
+}
+
+search-toolkit-facet-set {
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+search-toolkit-facet-set.unpad {
+    margin-top: -12px;
+}
+
+search-toolkit-facet-config {
+    margin-bottom: 20px;
+}
+
+.hide-empty-checkbox {
+    margin-right: 0;
+}
+
+.filters-title-span {
+    margin-right: 20px;
+}
+
+.small-icon {
+    font-size: 16px;
+    height: unset;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+.config-row {
+    justify-content: right;
+}

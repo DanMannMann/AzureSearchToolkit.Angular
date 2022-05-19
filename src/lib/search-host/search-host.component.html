@@ -1,0 +1,107 @@
+<ng-container *ngIf="!!searchModel">
+    <div class="row">
+      <div class="col">
+        <div class="row config-row">
+          <div *ngIf="showSettings" [@slideInOut] style="flex-grow:1">
+            <search-toolkit-facet-config [searchModel]="searchModel" [(hideEmpty)]="hideEmpty" (searchModelChange)="search()">
+              <ng-content select="[configItem]"></ng-content>
+            </search-toolkit-facet-config>
+          </div>
+          <mat-icon *ngIf="!showSettings" class="small-icon" (click)="showSettings = true">settings</mat-icon>
+          <mat-icon *ngIf="showSettings" class="small-icon" (click)="showSettings = false">cancel</mat-icon>
+        </div>
+        <ng-container *ngFor="let facet of facets(searchModel.facets); index as i; trackBy: facetSetIdentity">
+          <search-toolkit-facet-set 
+              [class.hide-empty]="hideEmpty" 
+              [class.unpad]="i == 0 && !showSettings"
+              [facetSet]="facet" 
+              (facetSetChange)="facetsChanged()">
+          </search-toolkit-facet-set>
+        </ng-container>
+        <ng-content select="[facetSet]"></ng-content>
+      </div>
+      <div class="col">
+        <div class="row search-controls-row">
+          <div class="row search-input-row">
+            <mat-form-field style="margin-right:10px; flex-grow: 1;">
+              <mat-label>
+                  <span class="search-toolkit-search-input-label">search</span>
+              </mat-label>
+              <input class="search-toolkit-search-input" matInput type="text" [(ngModel)]="searchModel.search" (keydown.enter)="search()">
+            </mat-form-field>
+            <button class="search-toolkit-search-button" mat-flat-button color="primary" (click)="search()">search</button>
+            <ng-content select="[searchControl]"></ng-content>
+          </div>
+
+          <div class="row pagination-row">
+            <search-toolkit-field-selector [data]="selectFields(searchModel.selectFields)" (selectionChanged)="search()"></search-toolkit-field-selector>
+            <mat-paginator (page)="setPage($event)"
+                  [length]="searchModel.totalResults"
+                  [pageSize]="searchModel.resultsPerPage"
+                  [pageSizeOptions]="pageSizes"
+                  aria-label="Select page">
+            </mat-paginator>  
+          </div>   
+        </div>
+
+        <mat-expansion-panel class="search-toolkit-filter-expansion" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="filters-title-span">filters</span>
+              <mat-panel-description>
+                <mat-chip-list>
+                  <mat-chip *ngFor="let filter of selectedFilters(searchModel.stringFieldFilters)">
+                    <span>{{ fieldDisplayName(filter) }} {{ filter.operation }} {{ getDisplayString(filter, filter.value) }} </span>
+                    <span *ngIf="filter.operation == 'Between'"> - {{ getDisplayString(filter, filter.valueTo) }}</span>
+                    <mat-icon class="chip-close" (click)="clear(filter); $event.stopPropagation();">cancel</mat-icon>
+                  </mat-chip>
+                  <mat-chip *ngFor="let filter of selectedFilters(searchModel.numericFieldFilters)">
+                    <span>{{ fieldDisplayName(filter) }} {{ filter.operation }} {{ getDisplayString(filter, filter.value) }} </span>
+                    <span *ngIf="filter.operation == 'Between'"> - {{ getDisplayString(filter, filter.valueTo) }}</span>
+                    <mat-icon class="chip-close" (click)="clear(filter); $event.stopPropagation();">cancel</mat-icon>
+                  </mat-chip>
+                  <mat-chip *ngFor="let filter of selectedFilters(searchModel.dateTimeFieldFilters)">
+                    <span>{{ fieldDisplayName(filter) }} {{ filter.operation }} {{ getDisplayString(filter, filter.value) }} </span>
+                    <span *ngIf="filter.operation == 'Between'"> - {{ getDisplayString(filter, filter.valueTo) }}</span>
+                    <mat-icon class="chip-close" (click)="clear(filter); $event.stopPropagation();">cancel</mat-icon>
+                  </mat-chip>
+                  <mat-chip *ngFor="let filter of selectedFilters(searchModel.boolFieldFilters)">
+                    <span>{{ fieldDisplayName(filter) }} {{ filter.operation }} {{ getDisplayString(filter, filter.value) }} </span>
+                    <span *ngIf="filter.operation == 'Between'"> - {{ getDisplayString(filter, filter.valueTo) }}</span>
+                    <mat-icon class="chip-close" (click)="clear(filter); $event.stopPropagation();">cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-panel-description>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row wrap-row search-toolkit-filter-drawer">
+            <search-toolkit-string-filter 
+                *ngFor="let filter of filters(searchModel.stringFieldFilters)" 
+                [data]="filter" 
+                (dataChange)="search()">
+            </search-toolkit-string-filter>
+            <search-toolkit-number-filter 
+                *ngFor="let filter of filters(searchModel.numericFieldFilters)" 
+                [data]="filter" 
+                (dataChange)="search()">
+            </search-toolkit-number-filter>
+            <search-toolkit-datetime-filter 
+                *ngFor="let filter of filters(searchModel.dateTimeFieldFilters)" 
+                [data]="filter" 
+                (dataChange)="search()">
+            </search-toolkit-datetime-filter>
+            <search-toolkit-boolean-filter 
+                *ngFor="let filter of filters(searchModel.boolFieldFilters)" 
+                [data]="filter" 
+                (dataChange)="search()">
+            </search-toolkit-boolean-filter>
+            <ng-content select="[filter]"></ng-content>
+          </div>
+        </mat-expansion-panel>
+        
+        <div class="row search-results">
+            <ng-content select="[resultArea]"></ng-content>
+        </div>
+      </div>
+    </div>
+  </ng-container>

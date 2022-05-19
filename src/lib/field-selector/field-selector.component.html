@@ -1,0 +1,10 @@
+<mat-form-field>
+    <mat-select class="search-toolkit-field-selector-select" *ngIf="!!data" [(value)]="selected" (valueChange)="onChange()" multiple>
+        <mat-select-trigger class="search-toolkit-field-selector-trigger">
+            select fields
+        </mat-select-trigger>
+        <mat-option class="search-toolkit-field-selector-option" *ngFor="let field of data" [value]="field">
+            {{ getDisplayName(field) }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

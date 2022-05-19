@@ -1,0 +1,42 @@
+:host-context(.hide-empty) [data-valuecount="0"] {
+    display: none;
+}
+
+h5 {
+  margin: unset;  
+  margin-right: 5px;
+}
+
+.search-toolkit-facet-set-values-container {
+    text-align: left;
+}
+
+.search-toolkit-facet-set-name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-toolkit-facet-set-chevron-container {
+    margin-top: -0.5em;
+    font-size: 85%;
+}
+
+.show-more-link {
+    font-size: 12px;
+    color: darkblue;
+    text-decoration: underline;
+    cursor: pointer;
+}

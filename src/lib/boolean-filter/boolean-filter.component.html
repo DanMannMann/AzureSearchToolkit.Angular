@@ -1,0 +1,6 @@
+<div class="search-toolkit-boolean-filter-name-container mat-form-field">
+    <span class="search-toolkit-boolean-filter-name">{{ displayName }}</span>
+</div>
+<div class="search-toolkit-boolean-filter-value-container mat-form-field">
+    <input type="checkbox" #checky class="search-toolkit-boolean-filter-value" [checked]="data.value" (change)="checkChanged(checky.checked)">
+</div>

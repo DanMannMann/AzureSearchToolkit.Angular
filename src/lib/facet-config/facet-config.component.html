@@ -1,0 +1,12 @@
+<div class="search-toolkit-setting-wrapper combine-facets-setting-wrapper mat-form-field">
+    <span>Combine facets: </span><span class="search-toolkit-toggle-link" (click)="toggleCombineFacets()">{{ searchModel.combineFacets | lowercase }}</span>
+</div>
+<div class="search-toolkit-setting-wrapper combine-values-setting-wrapper mat-form-field">
+    <span>Combine values in facet: </span><span class="search-toolkit-toggle-link" (click)="toggleCombineFacetValues()">{{ searchModel.combineFacetValues | lowercase }}</span>
+</div>
+<div class="search-toolkit-setting-wrapper hide-empty-setting-wrapper mat-form-field">
+    <span>Empty facets: </span><span class="search-toolkit-toggle-link" (click)="toggleShowHide()">{{ showHide }}</span>
+</div>
+<div class="search-toolkit-setting-wrapper">
+    <ng-content></ng-content>
+</div>

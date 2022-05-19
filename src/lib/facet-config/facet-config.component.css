@@ -1,0 +1,12 @@
+
+.search-toolkit-setting-wrapper {
+    white-space: nowrap;
+    font-size: 12px;
+    display: block;
+}
+
+.search-toolkit-toggle-link {
+    text-decoration: underline;
+    cursor: pointer;
+    color: darkblue;
+}

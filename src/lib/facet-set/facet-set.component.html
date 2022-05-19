@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col">
+        <div class="search-toolkit-facet-set-chevron-container" (click)="expanded = !expanded">
+            <mat-icon *ngIf="!expanded">chevron_right</mat-icon>
+            <mat-icon *ngIf="expanded">expand_more</mat-icon>
+        </div>
+    </div>
+    <div class="col right mat-form-field">
+        <div class="search-toolkit-facet-set-name-container" (click)="expanded = !expanded">
+            <h5 class="search-toolkit-facet-set-name">
+                {{ displayName }}
+            </h5>
+        </div>
+        <div class="search-toolkit-facet-set-values-container" [attr.data-valuecount]="value.filteredCount" *ngFor="let value of facetSet.values; index as i" >
+            <search-toolkit-facet-value *ngIf="expanded && (i < 10 || showMore)" [facetSet]="facetSet" [facetValue]="value" (facetValueChange)="facetSetChange.emit(facetSet)"></search-toolkit-facet-value>
+        </div>
+        <span *ngIf="expanded && !showMore && facetSet.values.length > 10" class="show-more-link" (click)="showMore = !showMore">show more</span>
+        <span *ngIf="expanded && showMore && facetSet.values.length > 10" class="show-more-link" (click)="showMore = !showMore">show less</span>
+    </div>
+</div>
+

@@ -1,0 +1,6 @@
+<span style="white-space: nowrap;" class="search-toolkit-sort-label-span" (click)="click()">
+    {{ displayName }}
+    <mat-icon class="search-toolkit-sort-label-icon" *ngIf="data.order == 'Ascending'">trending_up</mat-icon>
+    <mat-icon class="search-toolkit-sort-label-icon" *ngIf="data.order == 'Descending'">trending_down</mat-icon>
+    <mat-icon class="search-toolkit-sort-label-icon search-toolkit-sort-label-icon-none" *ngIf="data.order == 'None'">trending_flat</mat-icon>
+</span>
