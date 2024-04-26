@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { FacetSet, FieldFilter, Formattable, getDisplayString, SearchConfig, SelectField } from '../Model';
 import { trigger, transition, animate, style } from '@angular/animations'
 
